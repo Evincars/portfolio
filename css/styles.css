@@ -1,11 +1,17 @@
 /*
-font-family: 'Hind Guntur', sans-serif;
-font-family: 'Hind Vadodara', sans-serif;
-font-family: 'Molengo', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Dosis', sans-serif;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Abel', sans-serif;
+font-family: 'Rajdhani', sans-serif;
+font-family: 'Jura', sans-serif;
+font-family: 'Gudea', sans-serif;
 */
 
 html {
-	font-family: 'Hind Vadodara', sans-serif;
+	font-family: 'Gudea', sans-serif;
 }
 
 h1 {
