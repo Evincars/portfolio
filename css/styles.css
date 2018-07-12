@@ -11,7 +11,7 @@ font-family: 'Gudea', sans-serif;
 */
 
 html {
-	font-family: 'Gudea', sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 
 h1 {
@@ -25,10 +25,30 @@ h1 {
 	margin-top: 50px;
 }
 
-section {
+main {
+	padding: 40px 0px 40px 0px;
 	font-size: 130%;
 }
 
 header {}
 
-footer {}
+footer {
+	padding-top: 40px;
+}
+
+hr {
+	height: 1px;
+    color: #bbb;
+    background: #bbb;
+    font-size: 0;
+    border: 0;
+}
+
+a, #header-underscore {
+	color: #1E90FF;
+}
+
+#header-underscore {
+	font-size: 70%;
+	padding-right: 10px;
+}
