@@ -1,0 +1,28 @@
+/*
+font-family: 'Hind Guntur', sans-serif;
+font-family: 'Hind Vadodara', sans-serif;
+font-family: 'Molengo', sans-serif;
+*/
+
+html {
+	font-family: 'Hind Vadodara', sans-serif;
+}
+
+h1 {
+	font-family: Arial;
+	font-size: 400%;
+}
+
+#content {
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+section {
+	font-size: 130%;
+}
+
+header {}
+
+footer {}
