@@ -28,6 +28,7 @@ h1 {
 main {
 	padding: 40px 0px 40px 0px;
 	font-size: 130%;
+	line-height: 32px;
 }
 
 header {}
@@ -44,8 +45,25 @@ hr {
     border: 0;
 }
 
+ul li {
+	list-style-type: square;
+	height: 32px;
+}
+
 a, #header-underscore {
 	color: #1E90FF;
+}
+
+#curriculum-vitae, #contact {
+	display: inline-block;
+}
+
+#contact {
+	margin-left: 150px;
+}
+
+#gray-font {
+	color: #777;
 }
 
 #header-underscore {
