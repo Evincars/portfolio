@@ -11,62 +11,70 @@ font-family: 'Gudea', sans-serif;
 */
 
 html {
-	font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 h1 {
-	font-family: Arial;
-	font-size: 400%;
+  font-family: Arial;
+  font-size: 400%;
 }
 
 #content {
-	width: 800px;
-	margin: 0 auto;
-	margin-top: 50px;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 main {
-	padding: 40px 0px 40px 0px;
-	font-size: 130%;
-	line-height: 32px;
+  padding: 40px 0px 40px 0px;
+  font-size: 130%;
+  line-height: 32px;
 }
 
-header {}
+header {
+}
 
 footer {
-	padding-top: 40px;
+  padding-top: 40px;
 }
 
 hr {
-	height: 1px;
-    color: #bbb;
-    background: #bbb;
-    font-size: 0;
-    border: 0;
+  height: 1px;
+  color: #bbb;
+  background: #bbb;
+  font-size: 0;
+  border: 0;
 }
 
 ul li {
-	list-style-type: square;
-	height: 32px;
+  list-style-type: square;
+  height: 32px;
 }
 
-a, #header-underscore {
-	color: #1E90FF;
+a,
+#header-underscore {
+  color: #1e90ff;
 }
 
-#curriculum-vitae, #contact {
-	display: inline-block;
+/* #header-underscore {
+  background-image: url('../assets/terminal-solid.svg');
+  background-repeat: no-repeat;
+} */
+
+#curriculum-vitae,
+#contact {
+  display: inline-block;
 }
 
 #contact {
-	margin-left: 150px;
+  margin-left: 150px;
 }
 
 #gray-font {
-	color: #777;
+  color: #777;
 }
 
 #header-underscore {
-	font-size: 70%;
-	padding-right: 10px;
+  font-size: 70%;
+  padding-right: 10px;
 }
