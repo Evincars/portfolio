@@ -1,0 +1,56 @@
+html {
+  font-family: 'Raleway', sans-serif;
+}
+
+header {
+  padding-bottom: 18px;
+}
+
+main {
+  padding: 18px 0px 40px 0px;
+  font-size: 18px;
+  line-height: 32px;
+  text-align: justify;
+}
+
+hr {
+  height: 2px;
+  color: #ddd;
+  background: #ddd;
+  font-size: 0;
+  border: 0;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.header-title {
+  font-family: Arial;
+  font-size: 80px;
+}
+
+.header-subtitle {
+  color: rgba(150, 150, 150, 0.8);
+}
+
+.header-prefix {
+  font-weight: 400;
+  color: rgba(200, 200, 200, 0.3);
+}
+
+.header-subfix {
+  color: orange;
+}
+
+td {
+  font-size: 16px;
+  padding: 3px 7px;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+
+td a {
+  text-decoration: none;
+}
