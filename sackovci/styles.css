@@ -10,7 +10,6 @@ main {
   padding: 18px 0px 40px 0px;
   font-size: 18px;
   line-height: 32px;
-  text-align: justify;
 }
 
 hr {
@@ -22,9 +21,13 @@ hr {
 }
 
 .container {
-  width: 1000px;
+  width: 70%;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+.description {
+  text-align: justify;
 }
 
 .header-title {
@@ -45,10 +48,14 @@ hr {
   color: orange;
 }
 
+thead {
+  font-weight: bold;
+}
+
 td {
   font-size: 16px;
-  padding: 3px 7px;
-  background-color: rgba(200, 200, 200, 0.5);
+  padding: 9px 7px 9px;
+  background-color: rgba(220, 220, 220, 0.4);
 }
 
 td a {
