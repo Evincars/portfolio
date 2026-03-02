@@ -1,121 +1,160 @@
-# STALKER Dark Theme Design
+# STALKER ANOMALY THEME - ATMOSPHERIC EDITION
 
 ## Overview
-Your portfolio now features a dark theme inspired by the S.T.A.L.K.E.R. video game series, creating a post-apocalyptic, atmospheric vibe with industrial and gritty aesthetics.
+Your portfolio now features a completely redesigned **dark Stalker-type theme** with a post-apocalyptic, radiation zone atmosphere. The theme emphasizes atmospheric decay, industrial deterioration, and mysterious SCP-style aesthetics.
 
-## Theme Features
+## 🎮 **Key Changes from Previous Theme**
 
-### Color Palette
-- **Dark Background**: Deep black (#0a0e0f) with subtle green scanline patterns
-- **Secondary Background**: Dark charcoal (#141a1d) for content containers
-- **Primary Text**: Light gray (#c0c0c0) for comfortable readability
-- **Accent Colors**:
-  - **Amber/Gold** (#d4af37): Main headings and links - gives a warm, glowing feel
-  - **Forest Green** (#2b8a2b): Accents, borders, and decorative elements - evokes the post-apocalyptic zone
-  - **Cyan** (#00d4aa): Hover effects and secondary headings - provides sci-fi terminal feel
+### Header Redesign
+✅ **Terminal icon removed** - Clean, minimalist approach  
+✅ **New header style** - Uppercase, spaced-out typography with atmospheric framing  
+✅ **Contextual labels** - "[CLASSIFIED]" and "[SCP-CLASS]" tags frame the title  
+✅ **Flicker animation** - Subtle opacity flicker creates unstable, eerie feel  
+✅ **Rust color scheme** - Brown/rust tones replace amber for weathered aesthetic  
 
-### Visual Effects
+### New Visual Features
+- **Flicker animation** on header and page load for instability effect
+- **Atmospheric background** with radial gradient glow emanating from top
+- **Scanline overlay** on content boxes for CRT monitor feel
+- **Rust/decay color palette** instead of gold - more authentic post-apocalyptic vibe
+- **Dashed borders** on links for fragmented appearance
+- **Custom bullet points** (◆) in lists with rust accent
+- **Info boxes** with gradient backgrounds and subtle scanlines
 
-#### 1. **Scanline Effect**
-- Horizontal scanlines across the entire page background and content area
-- Mimics old CRT monitors and creates an authentic retro-futuristic vibe
-- Subtle and non-intrusive (3% opacity)
+## 🎨 **Color Palette**
 
-#### 2. **Glow Effects**
-- Headings glow with soft green and gold shadows
-- Links glow on hover with cyan accent
-- Terminal icon (#header-underscore) has a green glow effect
-- Horizontal divider line has a green box shadow for atmospheric separation
+| Variable | Color | Purpose |
+|----------|-------|---------|
+| `--bg-void` | #050607 | Deep black void background |
+| `--bg-decay` | #0f1215 | Slightly lighter secondary background |
+| `--bg-panel` | #111820 | Content container background |
+| `--text-primary` | #a8a8a8 | Main readable text |
+| `--text-secondary` | #5a5a5a | Dimmed secondary text |
+| `--accent-rust` | #8b4513 | Rust/decay brown - headers, borders |
+| `--accent-radiation` | #4a7c4e | Forest green - radiation zone feel |
+| `--accent-decay` | #7d7d3f | Khaki/mustard - subtle accents |
+| `--accent-danger` | #cc3333 | Red - warning/danger indicators |
+| `--border-broken` | #2a3a35 | Dark teal borders |
 
-#### 3. **Borders & Shadows**
-- Dark, muted borders (#1a2d2a) instead of bright lines
-- Inset shadows on content containers create depth
-- Subtle outward glow suggesting radiation/energy emanation
+## 🎬 **CSS Animations**
 
-#### 4. **Typography**
-- Primary fonts: **Rajdhani** and **Jura** - geometric, technical fonts perfect for sci-fi aesthetic
-- Increased letter spacing on headings for dramatic effect
-- All headings use text shadows for depth
+### Flicker Animation
+- Triggers on header and page elements
+- Creates subtle opacity variations
+- Mimics failing electronics/unstable anomaly zones
+- 3-4 second cycle for authenticity
 
-### Interactive Elements
+### Glitch Shift Animation
+- Available for future use (not currently active)
+- Can be applied for extra distorted vibe
 
-#### Links
-- Default color: Warm amber/gold
-- Hover state: Cyan with glow effect
-- Visited state: Darker golden brown
-- Smooth 0.3s transitions
+## 🎯 **Design Elements**
 
-#### Scrollbar
-- Custom styled with green glow
-- Changes to cyan on hover
-- Rounded appearance for modern look
+### Header
+```
+       [ CLASSIFIED ]
+    ADAM LASÁK - PORTFOLIO
+       [ SCP-CLASS ]
+```
+- Monospace, uppercase typography with wide letter spacing
+- Contextual framing labels with danger red color
+- Subtle flicker effect
+- Rust-colored text (#8b4513)
 
-#### Selection
-- Text selection uses forest green background
-- Maintains readability with dark text on green
+### Content Boxes
+- Dark panel background with gradient overlay
+- Thick rust-colored left border (3px)
+- Scanline effect overlay
+- Soft radiation green glow
+- Inset shadows for depth
 
-## CSS Variables Reference
-All colors are defined as CSS variables for easy customization:
+### Links
+- Khaki/mustard color with dashed underline
+- Hover state: Changes to radiation green with glow effect
+- Visited state: Muted brown with reduced opacity
 
+### Lists
+- Custom diamond bullets (◆) in rust color
+- Improved spacing and readability
+- Clean appearance without default browser bullets
+
+### Info Sections (CV & Contact)
+- Semi-transparent gradient backgrounds
+- Scanline overlay effect
+- Dark teal borders with rust left accent
+- Contained relative positioning to maintain depth
+
+## 🖥️ **Typography**
+
+**Primary Fonts:**
+- `Jura` - Technical, monospace feel
+- `Rajdhani` - Clean, geometric fallback
+
+**Font Usage:**
+- Headers (h1, h3): Bold, uppercase with letter-spacing
+- Body text: Lighter weight for readability
+- Footer: Uppercase with letter-spacing for emphasis
+
+## ♿ **Accessibility**
+
+- High contrast ratios maintained for readability
+- Subtle animations don't interfere with content comprehension
+- Text remains clear despite scanline overlay
+- Color choices avoid red-green colorblindness issues
+- Flicker effect is gentle and non-photosensitive
+
+## 🎨 **Customization Tips**
+
+### Change Rust Accent Color
+Edit `--accent-rust` in the `:root` section:
 ```css
---color-bg-dark: #0a0e0f;           /* Main background */
---color-bg-secondary: #141a1d;      /* Content boxes */
---color-text-primary: #c0c0c0;      /* Main text */
---color-text-secondary: #808080;    /* Secondary text */
---color-accent-amber: #d4af37;      /* Gold/amber accents */
---color-accent-green: #2b8a2b;      /* Radiation zone green */
---color-accent-cyan: #00d4aa;       /* Sci-fi cyan */
---color-border: #1a2d2a;            /* Dark borders */
---color-glow: #2b8a2b;              /* Glow color */
+--accent-rust: #your-color-here;
 ```
 
-## Customization
-
-### Change Color Scheme
-Edit the CSS variables at the top of `styles.css`:
-
+### Adjust Flicker Speed
+Modify the animation duration:
 ```css
-:root {
-  --color-bg-dark: #new-color;
-  /* ... modify other colors as needed */
-}
+animation: flicker 3s infinite; /* Change 3s to desired duration */
 ```
 
-### Adjust Scanline Intensity
-Modify the opacity in the `repeating-linear-gradient`:
-- Current: `rgba(43, 138, 43, 0.03)` = 3% opacity
-- Increase second value for more visible scanlines
-- Set to `0.0` to disable
-
-### Change Font
-Modify the `font-family` in the `html` selector:
+### Remove Scanlines
+Modify `#content::before`:
 ```css
-html {
-  font-family: 'Your-Font-Here', fallback-font, sans-serif;
-}
+background: none; /* Removes scanline effect */
 ```
 
-## Compatibility
-- Modern browsers: Chrome, Firefox, Safari, Edge
-- CSS features used:
-  - CSS Variables (--custom-properties)
-  - CSS Gradients
-  - Box Shadow & Text Shadow
-  - Pseudo-elements (::before, ::selection)
-  - Smooth transitions
+### Change Header Label Text
+Edit the HTML in `index.html`:
+```html
+<h1>
+  [Your-Custom-Label-Left]
+  Adam Lasák - portfolio
+  [Your-Custom-Label-Right]
+</h1>
+```
 
-## Accessibility
-- High contrast ratios maintained for text readability
-- Glow effects are subtle and don't interfere with content
-- Selection color provides clear visual feedback
-- Font sizes remain readable on all screen sizes
+## 📁 **File Structure**
 
-## File Structure
-- **css/styles.css** - Complete theme styling (242 lines)
-- **index.html** - HTML structure (unchanged)
+- **css/styles.css** - Complete theme stylesheet (352 lines)
+- **index.html** - HTML structure with header-underscore hidden via CSS
 - **STALKER_THEME_README.md** - This documentation
+
+## 🔮 **Features at a Glance**
+
+✅ Deep void background with atmospheric gradient  
+✅ Flicker animation for instability  
+✅ Rust/decay color palette  
+✅ Radiation zone green accents  
+✅ Scanline CRT monitor overlay  
+✅ Glowing shadows and atmospheric effects  
+✅ Custom scrollbar with rust styling  
+✅ Dashed link borders for fragmented feel  
+✅ Info boxes with gradient backgrounds  
+✅ SCP-style header framing  
 
 ---
 
-Enjoy your new post-apocalyptic portfolio theme! 🎮☢️
+**Welcome to the Zone.** ☢️ 🎮
+
+
 

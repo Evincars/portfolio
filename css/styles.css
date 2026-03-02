@@ -1,241 +1,384 @@
 /*
-STALKER DARK THEME
-Post-apocalyptic, gritty, industrial aesthetic
-Font families available:
-font-family: 'Raleway', sans-serif;
-font-family: 'Open Sans Condensed', sans-serif;
-font-family: 'Roboto', sans-serif;
-font-family: 'Dosis', sans-serif;
-font-family: 'Yanone Kaffeesatz', sans-serif;
-font-family: 'Abel', sans-serif;
-font-family: 'Rajdhani', sans-serif;
-font-family: 'Jura', sans-serif;
-font-family: 'Gudea', sans-serif;
+  S.T.A.L.K.E.R. — PDA OPERATIVE DOSSIER THEME
+  Military-grade field terminal aesthetic.
+  Dark olive / worn-signal / decrypted-file vibe.
 */
 
-/* Color Palette */
-:root {
-  --color-bg-dark: #0a0e0f;
-  --color-bg-secondary: #141a1d;
-  --color-text-primary: #c0c0c0;
-  --color-text-secondary: #808080;
-  --color-accent-amber: #d4af37;
-  --color-accent-green: #2b8a2b;
-  --color-accent-cyan: #00d4aa;
-  --color-border: #1a2d2a;
-  --color-glow: #2b8a2b;
+/* ─── Animations ──────────────────────────────────────────────────── */
+
+@keyframes noise {
+  0%   { background-position: 0 0; }
+  10%  { background-position: -5% -10%; }
+  30%  { background-position: 3% 15%; }
+  50%  { background-position: -8% 5%; }
+  70%  { background-position: 6% -3%; }
+  100% { background-position: 0 0; }
 }
 
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes status-pulse {
+  0%, 100% { color: #6dff6d; text-shadow: 0 0 6px #6dff6d; }
+  50%       { color: #3aaa3a; text-shadow: none; }
+}
+
+/* ─── Palette ─────────────────────────────────────────────────────── */
+:root {
+  --void:        #07090a;
+  --paper:       #0d1410;
+  --panel:       #101812;
+  --stripe:      #141f16;
+
+  --ink:         #9aad8f;       /* main text — faded olive-green ink    */
+  --ink-dim:     #4e5e4a;       /* secondary / muted text               */
+  --ink-bright:  #c8d8b8;       /* bright emphasis                      */
+
+  --olive:       #556b2f;       /* dark olive — borders, accents        */
+  --moss:        #3a5c3a;       /* darker moss green                    */
+  --signal:      #6dff6d;       /* sharp terminal green — status only   */
+  --amber:       #c8a84b;       /* warm amber — headings                */
+  --amber-dim:   #7a6228;
+  --rust:        #8b3a1e;       /* rust-red — danger / markers          */
+
+  --border:      rgba(85, 107, 47, 0.35);
+  --border-hard: rgba(85, 107, 47, 0.65);
+}
+
+/* ─── Base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
 html {
-  font-family: 'Rajdhani', 'Jura', 'Open Sans Condensed', sans-serif;
-  background-color: var(--color-bg-dark);
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(43, 138, 43, 0.03) 0px,
-      rgba(43, 138, 43, 0.03) 1px,
-      transparent 1px,
-      transparent 2px
-    );
-  color: var(--color-text-primary);
+  font-family: 'Share Tech Mono', 'Jura', monospace;
+  font-size: 15px;
+  background-color: var(--void);
+  color: var(--ink);
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  padding: 0;
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-primary);
-  overflow-x: hidden;
+  padding: 20px 0 60px;
+  background-color: var(--void);
+
+  /* Tiled grain noise */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  animation: noise 8s steps(1) infinite;
 }
 
-h1 {
-  font-family: 'Jura', 'Rajdhani', monospace;
-  font-size: 400%;
-  color: var(--color-accent-amber);
-  text-shadow:
-    0 0 10px var(--color-glow),
-    0 0 20px rgba(212, 175, 55, 0.3);
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-
-h3 {
-  color: var(--color-accent-cyan);
-  font-size: 130%;
-  letter-spacing: 1px;
-  text-shadow: 0 0 8px rgba(0, 212, 170, 0.3);
-}
-
+/* ─── Layout shell ────────────────────────────────────────────────── */
 #content {
-  width: 800px;
+  width: 860px;
   margin: 0 auto;
-  margin-top: 50px;
-  background-color: var(--color-bg-secondary);
-  padding: 40px;
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
-  box-shadow:
-    inset 0 0 20px rgba(43, 138, 43, 0.05),
-    0 0 30px rgba(43, 138, 43, 0.15);
+  background-color: var(--paper);
+  border: 1px solid var(--border-hard);
+  border-top: 3px solid var(--olive);
+  border-bottom: 3px solid var(--olive);
   position: relative;
-}
+  animation: slide-in 0.4s ease both;
 
-/* Scanline effect overlay */
-#content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  /* Subtle horizontal ruled-paper lines */
   background-image:
     repeating-linear-gradient(
-      0deg,
-      rgba(43, 138, 43, 0.08) 0px,
-      rgba(43, 138, 43, 0.08) 1px,
-      transparent 1px,
-      transparent 2px
+      180deg,
+      transparent 0px,
+      transparent 31px,
+      rgba(85, 107, 47, 0.07) 31px,
+      rgba(85, 107, 47, 0.07) 32px
     );
-  border-radius: 2px;
 }
 
-main {
-  padding: 40px 0px 40px 0px;
-  font-size: 130%;
-  line-height: 32px;
-  color: var(--color-text-primary);
-  position: relative;
-  z-index: 1;
+/* Corner ticks */
+#content::before,
+#content::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--olive);
+  border-style: solid;
+  opacity: 0.7;
 }
+#content::before { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
+#content::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
+/* ─── Header ──────────────────────────────────────────────────────── */
 header {
+  padding: 28px 40px 24px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--panel);
   position: relative;
-  z-index: 1;
 }
 
-footer {
-  padding-top: 40px;
-  position: relative;
-  z-index: 1;
+/* Top designation bar */
+#header-designation {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.hdr-tag {
+  color: var(--ink-dim);
+}
+
+.hdr-divider {
+  color: var(--olive);
+  opacity: 0.5;
+}
+
+.hdr-status {
+  color: var(--signal);
+  animation: status-pulse 2.4s ease-in-out infinite;
+  margin-left: auto;       /* push to the right edge */
+}
+
+/* Main name */
+h1 {
+  font-family: 'Jura', monospace;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--amber);
+  margin: 0 0 12px;
+  padding: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(200, 168, 75, 0.2);
+  /* blinking cursor appended */
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+h1::after {
+  content: '█';
+  font-size: 1.8rem;
+  color: var(--amber);
+  opacity: 0.8;
+  animation: blink-cursor 1.1s step-end infinite;
+}
+
+/* Sub-title strip */
+#header-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+}
+
+.hdr-sep {
+  color: var(--olive);
+  opacity: 0.6;
+  font-size: 0.6rem;
+}
+
+#hdr-coords {
+  color: var(--amber-dim);
+  font-size: 0.7rem;
+}
+
+/* hide old icon span (kept in HTML for safety) */
+#header-underscore { display: none; }
+
+/* ─── HR ──────────────────────────────────────────────────────────── */
 hr {
-  height: 2px;
-  color: var(--color-accent-green);
+  border: none;
+  height: 1px;
+  margin: 0;
   background: linear-gradient(
     to right,
-    transparent,
-    var(--color-accent-green),
-    transparent
+    transparent 0%,
+    var(--olive) 20%,
+    var(--olive) 80%,
+    transparent 100%
   );
-  font-size: 0;
-  border: 0;
-  box-shadow: 0 0 10px rgba(43, 138, 43, 0.5);
+  opacity: 0.5;
 }
 
+/* ─── Main content ────────────────────────────────────────────────── */
+main {
+  padding: 36px 40px;
+  font-size: 0.98rem;
+  line-height: 2;
+  color: var(--ink);
+  position: relative;
+  z-index: 1;
+}
+
+main b {
+  color: var(--ink-bright);
+  font-weight: 600;
+}
+
+main i {
+  color: var(--amber-dim);
+  font-style: normal;
+  border-bottom: 1px dashed rgba(200, 168, 75, 0.3);
+}
+
+/* ─── Section headings ────────────────────────────────────────────── */
+h3 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin: 36px 0 14px;
+  padding: 6px 0 6px 14px;
+  border-left: 2px solid var(--olive);
+  background: linear-gradient(
+    to right,
+    rgba(85, 107, 47, 0.12) 0%,
+    transparent 100%
+  );
+  position: relative;
+}
+
+h3::before {
+  content: '//';
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+/* ─── Lists ───────────────────────────────────────────────────────── */
 ul {
-  margin: 20px 0;
+  margin: 16px 0 16px 0;
+  padding: 0;
 }
 
 ul li {
-  list-style-type: square;
-  height: 32px;
-  color: var(--color-text-primary);
-  margin-bottom: 5px;
-}
-
-ul li::marker {
-  color: var(--color-accent-green);
-}
-
-a,
-#header-underscore {
-  color: var(--color-accent-amber);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-  transition: all 0.3s ease;
+  list-style: none;
+  height: auto;
+  padding: 4px 0 4px 24px;
+  margin-bottom: 4px;
   position: relative;
+  color: var(--ink);
 }
 
-a:hover,
-#header-underscore:hover {
-  color: var(--color-accent-cyan);
-  border-bottom-color: var(--color-accent-cyan);
-  text-shadow: 0 0 8px rgba(0, 212, 170, 0.5);
-  box-shadow: 0 0 8px rgba(0, 212, 170, 0.3);
+ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--olive);
+  opacity: 0.8;
+}
+
+/* ─── Links ───────────────────────────────────────────────────────── */
+a {
+  color: var(--amber-dim);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 168, 75, 0.25);
+  transition: color 0.18s, border-color 0.18s, text-shadow 0.18s;
+}
+
+a:hover {
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+  text-shadow: 0 0 10px rgba(200, 168, 75, 0.4);
 }
 
 a:visited {
-  color: #b8860b;
-  border-bottom-color: rgba(184, 134, 11, 0.3);
+  color: var(--ink-dim);
+  border-bottom-color: transparent;
 }
 
+/* ─── Info panels (CV / Contact) ──────────────────────────────────── */
 #curriculum-vitae,
 #contact {
-  display: inline-block;
-  background-color: rgba(43, 138, 43, 0.1);
-  padding: 15px;
-  border: 1px solid var(--color-border);
-  margin: 20px 0;
-  border-radius: 2px;
+  display: block;
+  margin: 24px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--olive);
+  background: var(--stripe);
+  position: relative;
 }
 
-#curriculum-vitae {
-  margin-bottom: 20px;
+/* panel label stamp */
+#curriculum-vitae::after {
+  content: 'DOC';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--olive);
+  opacity: 0.4;
 }
 
-#contact {
-  margin-left: 0;
-  margin-top: 20px;
+#contact::after {
+  content: 'COM';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--olive);
+  opacity: 0.4;
 }
 
+#curriculum-vitae h3,
+#contact h3 {
+  margin-top: 0;
+}
+
+/* ─── Misc ────────────────────────────────────────────────────────── */
 #gray-font {
-  color: var(--color-text-secondary);
+  color: var(--ink-dim);
 }
 
-#header-underscore {
-  font-size: 70%;
-  padding-right: 10px;
-  color: var(--color-accent-green);
-  text-shadow: 0 0 8px rgba(43, 138, 43, 0.6);
-  border: none;
+/* ─── Footer ──────────────────────────────────────────────────────── */
+footer {
+  padding: 18px 40px 24px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  text-align: center;
+  background-color: var(--panel);
+  border-top: 1px solid var(--border);
+  text-transform: uppercase;
 }
 
-#header-underscore:hover {
-  color: var(--color-accent-cyan);
-  text-shadow: 0 0 12px rgba(0, 212, 170, 0.6);
+footer a {
+  color: var(--ink-dim);
+  border-bottom-color: transparent;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-accent-green);
-  border-radius: 6px;
-  box-shadow: 0 0 8px rgba(43, 138, 43, 0.5);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 212, 170, 0.5);
-}
-
-/* Selection styling */
-::selection {
-  background-color: var(--color-accent-green);
-  color: var(--color-bg-dark);
+footer a:hover {
+  color: var(--ink);
   text-shadow: none;
 }
 
-::-moz-selection {
-  background-color: var(--color-accent-green);
-  color: var(--color-bg-dark);
+/* ─── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 8px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb {
+  background: var(--moss);
+  border-radius: 1px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--olive); }
+
+/* ─── Selection ───────────────────────────────────────────────────── */
+::selection        { background: var(--olive); color: var(--void); }
+::-moz-selection   { background: var(--olive); color: var(--void); }
