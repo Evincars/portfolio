@@ -1,18 +1,14 @@
 /*
-  S.T.A.L.K.E.R. — PDA OPERATIVE DOSSIER THEME
-  Military-grade field terminal aesthetic.
-  Dark olive / worn-signal / decrypted-file vibe.
+  METRO 2033 — OPERATIVE DOSSIER THEME
+  Cold Moscow-tunnel steel & concrete, dim sodium lamps,
+  the toxic-green of a radiation meter and the signal-red of the Order.
 */
 
 /* ─── Animations ──────────────────────────────────────────────────── */
 
-@keyframes noise {
-  0%   { background-position: 0 0; }
-  10%  { background-position: -5% -10%; }
-  30%  { background-position: 3% 15%; }
-  50%  { background-position: -8% 5%; }
-  70%  { background-position: 6% -3%; }
-  100% { background-position: 0 0; }
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 55%                     { opacity: 0.4; }
 }
 
 @keyframes blink-cursor {
@@ -26,37 +22,43 @@
 }
 
 @keyframes status-pulse {
-  0%, 100% { color: #6dff6d; text-shadow: 0 0 6px #6dff6d; }
-  50%       { color: #3aaa3a; text-shadow: none; }
+  0%, 100% { color: var(--toxic-bright); text-shadow: 0 0 6px rgba(134, 209, 106, 0.7); }
+  50%       { color: var(--toxic); text-shadow: none; }
 }
 
 /* ─── Palette ─────────────────────────────────────────────────────── */
 :root {
-  --void:        #07090a;
-  --paper:       #0d1410;
-  --panel:       #101812;
-  --stripe:      #141f16;
+  --void:        #070a0c;       /* cold tunnel black                    */
+  --paper:       #0d1114;       /* concrete slab                        */
+  --panel:       #11161a;       /* riveted steel plate                  */
+  --panel-alt:   #171d22;       /* steel plate — lower gradient         */
+  --stripe:      #141a1f;       /* inset panels                         */
 
-  --ink:         #9aad8f;       /* main text — faded olive-green ink    */
-  --ink-dim:     #4e5e4a;       /* secondary / muted text               */
-  --ink-bright:  #c8d8b8;       /* bright emphasis                      */
+  --ink:         #c6d0d4;       /* main text — cool ash-grey            */
+  --ink-dim:     #85939c;       /* secondary / muted text               */
+  --ink-faint:   #566169;       /* faintest labels                      */
+  --ink-bright:  #e3ecef;       /* bright emphasis                      */
 
-  --olive:       #556b2f;       /* dark olive — borders, accents        */
-  --moss:        #3a5c3a;       /* darker moss green                    */
-  --signal:      #6dff6d;       /* sharp terminal green — status only   */
-  --amber:       #c8a84b;       /* warm amber — headings                */
-  --amber-dim:   #7a6228;
-  --rust:        #8b3a1e;       /* rust-red — danger / markers          */
+  --steel:       #6f97a8;       /* cold steel chrome accent             */
+  --steel-bright:#a9d0e0;
+  --toxic:       #4c7a3f;       /* radiation green                      */
+  --toxic-bright:#86d16a;
+  --signal:      #86d16a;       /* meter green — status only            */
+  --amber:       #d68a2e;       /* sodium-lamp amber — headings         */
+  --amber-bright:#ffb54a;
+  --amber-dim:   #a86f2a;
+  --rust:        #8a6a43;       /* worn rust                            */
+  --blood:       #d23b2f;       /* signal-red — danger / markers        */
 
-  --border:      rgba(85, 107, 47, 0.35);
-  --border-hard: rgba(85, 107, 47, 0.65);
+  --border:      rgba(60, 74, 83, 0.55);
+  --border-hard: rgba(60, 74, 83, 0.9);
 }
 
 /* ─── Base ────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
-  font-family: 'Share Tech Mono', 'Jura', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 15px;
   background-color: var(--void);
   color: var(--ink);
@@ -68,32 +70,43 @@ body {
   padding: 20px 0 60px;
   background-color: var(--void);
 
-  /* Tiled grain noise */
+  /* Tunnel darkness: vignette + faint scanlines */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  animation: noise 8s steps(1) infinite;
+    radial-gradient(ellipse at center, rgba(20, 24, 28, 0) 0%, rgba(0, 0, 0, 0.78) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  background-attachment: fixed;
 }
 
 /* ─── Layout shell ────────────────────────────────────────────────── */
 #content {
   width: 860px;
   margin: 0 auto;
-  background-color: var(--paper);
+  background: linear-gradient(180deg, var(--paper) 0%, #0a0e11 100%);
   border: 1px solid var(--border-hard);
-  border-top: 3px solid var(--olive);
-  border-bottom: 3px solid var(--olive);
+  border-top: 3px solid var(--steel);
+  border-bottom: 3px solid var(--rust);
   position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
   animation: slide-in 0.4s ease both;
+}
 
-  /* Subtle horizontal ruled-paper lines */
-  background-image:
-    repeating-linear-gradient(
-      180deg,
-      transparent 0px,
-      transparent 31px,
-      rgba(85, 107, 47, 0.07) 31px,
-      rgba(85, 107, 47, 0.07) 32px
-    );
+/* Flickering emergency strip light along the top edge */
+.strip-light {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--amber);
+  box-shadow: 0 0 10px rgba(214, 138, 46, 0.7);
+  animation: flicker 5s infinite steps(1, end);
+  z-index: 3;
 }
 
 /* Corner ticks */
@@ -103,18 +116,18 @@ body {
   position: absolute;
   width: 12px;
   height: 12px;
-  border-color: var(--olive);
+  border-color: var(--steel);
   border-style: solid;
   opacity: 0.7;
 }
 #content::before { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
-#content::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+#content::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; border-color: var(--rust); }
 
 /* ─── Header ──────────────────────────────────────────────────────── */
 header {
   padding: 28px 40px 24px;
   border-bottom: 1px solid var(--border);
-  background-color: var(--panel);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
   position: relative;
 }
 
@@ -123,7 +136,7 @@ header {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-  color: var(--ink-dim);
+  color: var(--ink-faint);
   margin-bottom: 14px;
   display: flex;
   align-items: center;
@@ -135,8 +148,8 @@ header {
 }
 
 .hdr-divider {
-  color: var(--olive);
-  opacity: 0.5;
+  color: var(--steel);
+  opacity: 0.55;
 }
 
 .hdr-status {
@@ -147,20 +160,20 @@ header {
 
 /* Main name */
 h1 {
-  font-family: 'Jura', monospace;
-  font-size: 2.8rem;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: 3rem;
   font-weight: 700;
-  letter-spacing: 0.25em;
-  color: var(--amber);
+  letter-spacing: 0.14em;
+  color: var(--amber-bright);
   margin: 0 0 12px;
   padding: 0;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(200, 168, 75, 0.2);
+  text-shadow: 0 0 18px rgba(214, 138, 46, 0.28);
   /* blinking cursor appended */
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 8px;
 }
 
 h1::after {
@@ -184,13 +197,13 @@ h1::after {
 }
 
 .hdr-sep {
-  color: var(--olive);
-  opacity: 0.6;
+  color: var(--rust);
+  opacity: 0.8;
   font-size: 0.6rem;
 }
 
 #hdr-coords {
-  color: var(--amber-dim);
+  color: var(--steel);
   font-size: 0.7rem;
 }
 
@@ -205,8 +218,8 @@ hr {
   background: linear-gradient(
     to right,
     transparent 0%,
-    var(--olive) 20%,
-    var(--olive) 80%,
+    var(--steel) 20%,
+    var(--rust) 80%,
     transparent 100%
   );
   opacity: 0.5;
@@ -228,25 +241,25 @@ main b {
 }
 
 main i {
-  color: var(--amber-dim);
+  color: var(--steel-bright);
   font-style: normal;
-  border-bottom: 1px dashed rgba(200, 168, 75, 0.3);
+  border-bottom: 1px dashed rgba(133, 190, 214, 0.35);
 }
 
 /* ─── Section headings ────────────────────────────────────────────── */
 h3 {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--olive);
+  color: var(--amber-bright);
   margin: 36px 0 14px;
   padding: 6px 0 6px 14px;
-  border-left: 2px solid var(--olive);
+  border-left: 2px solid var(--amber);
   background: linear-gradient(
     to right,
-    rgba(85, 107, 47, 0.12) 0%,
+    rgba(214, 138, 46, 0.1) 0%,
     transparent 100%
   );
   position: relative;
@@ -255,7 +268,8 @@ h3 {
 h3::before {
   content: '//';
   margin-right: 10px;
-  opacity: 0.5;
+  color: var(--steel);
+  opacity: 0.6;
 }
 
 /* ─── Lists ───────────────────────────────────────────────────────── */
@@ -277,22 +291,22 @@ ul li::before {
   content: '—';
   position: absolute;
   left: 0;
-  color: var(--olive);
-  opacity: 0.8;
+  color: var(--steel);
+  opacity: 0.85;
 }
 
 /* ─── Links ───────────────────────────────────────────────────────── */
 a {
-  color: var(--amber-dim);
+  color: var(--amber);
   text-decoration: none;
-  border-bottom: 1px solid rgba(200, 168, 75, 0.25);
+  border-bottom: 1px solid rgba(214, 138, 46, 0.3);
   transition: color 0.18s, border-color 0.18s, text-shadow 0.18s;
 }
 
 a:hover {
-  color: var(--amber);
-  border-bottom-color: var(--amber);
-  text-shadow: 0 0 10px rgba(200, 168, 75, 0.4);
+  color: var(--amber-bright);
+  border-bottom-color: var(--amber-bright);
+  text-shadow: 0 0 10px rgba(214, 138, 46, 0.45);
 }
 
 a:visited {
@@ -307,8 +321,9 @@ a:visited {
   margin: 24px 0;
   padding: 20px 24px;
   border: 1px solid var(--border);
-  border-left: 2px solid var(--olive);
-  background: var(--stripe);
+  border-left: 2px solid var(--steel);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
@@ -321,8 +336,8 @@ a:visited {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
-  color: var(--olive);
-  opacity: 0.4;
+  color: var(--steel);
+  opacity: 0.5;
 }
 
 #contact::after {
@@ -333,8 +348,8 @@ a:visited {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
-  color: var(--olive);
-  opacity: 0.4;
+  color: var(--steel);
+  opacity: 0.5;
 }
 
 #curriculum-vitae h3,
@@ -344,7 +359,7 @@ a:visited {
 
 /* ─── Misc ────────────────────────────────────────────────────────── */
 #gray-font {
-  color: var(--ink-dim);
+  color: var(--ink-faint);
 }
 
 /* ─── Footer ──────────────────────────────────────────────────────── */
@@ -353,9 +368,9 @@ footer {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
-  color: var(--ink-dim);
+  color: var(--ink-faint);
   text-align: center;
-  background-color: var(--panel);
+  background: linear-gradient(180deg, var(--panel-alt) 0%, var(--panel) 100%);
   border-top: 1px solid var(--border);
   text-transform: uppercase;
 }
@@ -366,19 +381,19 @@ footer a {
 }
 
 footer a:hover {
-  color: var(--ink);
+  color: var(--steel-bright);
   text-shadow: none;
 }
 
 /* ─── Scrollbar ───────────────────────────────────────────────────── */
-::-webkit-scrollbar       { width: 8px; }
-::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar       { width: 10px; }
+::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb {
-  background: var(--moss);
-  border-radius: 1px;
+  background: var(--border-hard);
+  border-radius: 2px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--olive); }
+::-webkit-scrollbar-thumb:hover { background: var(--rust); }
 
 /* ─── Selection ───────────────────────────────────────────────────── */
-::selection        { background: var(--olive); color: var(--void); }
-::-moz-selection   { background: var(--olive); color: var(--void); }
+::selection        { background: var(--rust); color: var(--void); }
+::-moz-selection   { background: var(--rust); color: var(--void); }
