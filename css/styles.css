@@ -172,16 +172,17 @@ h1 {
   text-shadow: 0 0 18px rgba(214, 138, 46, 0.28);
   /* blinking cursor appended */
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 h1::after {
-  content: '█';
-  font-size: 2.2rem;
-  line-height: 1;
-  color: var(--amber);
-  opacity: 0.8;
+  content: '';
+  display: block;
+  width: 0.55rem;
+  height: 2rem;        /* ~cap height of the 3rem name */
+  background: var(--amber);
+  opacity: 0.85;
   animation: blink-cursor 1.1s step-end infinite;
 }
 
@@ -313,49 +314,6 @@ a:hover {
 a:visited {
   color: var(--ink-dim);
   border-bottom-color: transparent;
-}
-
-/* ─── Info panels (CV / Contact) ──────────────────────────────────── */
-#curriculum-vitae,
-#contact {
-  display: block;
-  margin: 24px 0;
-  padding: 20px 24px;
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--steel);
-  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-/* panel label stamp */
-#curriculum-vitae::after {
-  content: 'DOC';
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: var(--steel);
-  opacity: 0.5;
-}
-
-#contact::after {
-  content: 'COM';
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: var(--steel);
-  opacity: 0.5;
-}
-
-#curriculum-vitae h3,
-#contact h3 {
-  margin-top: 0;
 }
 
 /* ─── Misc ────────────────────────────────────────────────────────── */
