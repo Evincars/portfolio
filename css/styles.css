@@ -172,13 +172,14 @@ h1 {
   text-shadow: 0 0 18px rgba(214, 138, 46, 0.28);
   /* blinking cursor appended */
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
 }
 
 h1::after {
   content: '█';
-  font-size: 1.8rem;
+  font-size: 2.2rem;
+  line-height: 1;
   color: var(--amber);
   opacity: 0.8;
   animation: blink-cursor 1.1s step-end infinite;
