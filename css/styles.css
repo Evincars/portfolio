@@ -179,8 +179,8 @@ h1 {
 h1::after {
   content: '';
   display: block;
-  width: 0.55rem;
-  height: 2rem;        /* ~cap height of the 3rem name */
+  width: 0.5rem;
+  height: 2.15rem;     /* full cap height — top touches the letters */
   background: var(--amber);
   opacity: 0.85;
   animation: blink-cursor 1.1s step-end infinite;
